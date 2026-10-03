@@ -585,6 +585,17 @@ desenharInicio();
 history.replaceState(null, "", location.hash || "#/");
 aplicarRota("inicial");
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("sw.js").catch(() => {});
+  const havia = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!havia) return;
+    const a = $("#aviso");
+    clearTimeout(tAviso);
+    a.textContent = "Nova versão do guia. Toque para atualizar.";
+    a.classList.add("on", "acao");
+    a.onclick = () => location.reload();
+  });
+  navigator.serviceWorker.register("sw.js").then(reg => {
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) reg.update().catch(() => {}); });
+  }).catch(() => {});
 }
 })();

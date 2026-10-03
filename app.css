@@ -419,6 +419,7 @@ body[data-vista="lista"] .vista-lista { display: block; }
   transition: transform .35s cubic-bezier(.2,.8,.2,1);
 }
 .aviso.on { transform: translate(-50%, 0); }
+.aviso.acao { cursor: pointer; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
