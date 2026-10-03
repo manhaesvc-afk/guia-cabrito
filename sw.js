@@ -1,5 +1,5 @@
 /* Cache offline: app e miniaturas na instalação; fotos grandes sob demanda ou pelo botão "Salvar fotos". */
-const VERSAO = "ea776c1100";
+const VERSAO = "14c1595bdb";
 const APP = `guia-app-${VERSAO}`;
 const FOTOS = "guia-fotos";
 self.window = self;
@@ -15,7 +15,7 @@ const ESSENCIAIS = [
   "./", "index.html", "app.css", "app.js", "data.js", "manifest.webmanifest",
   "fonts/newsreader.woff2", "fonts/newsreader-italic.woff2", "fonts/schibsted-grotesk.woff2",
   "icons/icone.svg", "icons/icone-192.png", "icons/icone-512.png",
-  ...(G.capa ? [`img/${G.capa.id}-l.webp`] : []),
+  ...[G.capa, G.capaAlta].filter(Boolean).map(f => `img/${f.id}-l.webp`),
 ];
 
 self.addEventListener("install", e => {

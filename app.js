@@ -78,7 +78,7 @@ function desenharInicio() {
   };
   $("#inicio").innerHTML = `
   <header class="capa" ${fundoLq(G.capa)}>
-    ${G.capa ? `<img src="${img(G.capa, "l")}" alt="Agulha de granito da Pedra do Fio, coberta de vegetação, sob céu azul" fetchpriority="high">` : ""}
+    ${G.capa ? `<picture>${G.capaAlta ? `<source media="(max-aspect-ratio: 1/1)" srcset="${img(G.capaAlta, "l")}">` : ""}<img src="${img(G.capa, "l")}" alt="Agulha de granito da Pedra do Fio, coberta de vegetação, sob céu azul" fetchpriority="high"></picture>` : ""}
     <p class="capa-credito">Complexo Pedra do Fio e Pedra do Cabrito, Castelo (ES)</p>
     <div class="capa-texto">
       <p class="capa-sup">Guia de campo</p>
@@ -146,7 +146,7 @@ function desenharInicio() {
 const FOTOS_L = [...new Set([
   ...SP.flatMap(s => s.fotos.map(f => img(f, "l"))),
   ...Object.values(G.ambientes).filter(Boolean).map(f => img(f, "l")),
-  ...[G.capa, G.mapa].filter(Boolean).map(f => img(f, "l")),
+  ...[G.capa, G.capaAlta, G.mapa].filter(Boolean).map(f => img(f, "l")),
 ])];
 let instalar = null;
 window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); instalar = e; desenharOffline(); });
