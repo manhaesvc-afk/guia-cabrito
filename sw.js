@@ -1,5 +1,5 @@
 /* Cache offline: app e miniaturas na instalação; fotos grandes sob demanda ou pelo botão "Salvar fotos". */
-const VERSAO = "80dca8eaa5";
+const VERSAO = "ea776c1100";
 const APP = `guia-app-${VERSAO}`;
 const FOTOS = "guia-fotos";
 self.window = self;
